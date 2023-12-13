@@ -1,16 +1,11 @@
 const express = require("express");
-const User = require("../models/user");
+const { registerUser } = require("../controllers/userController");
+const { loginUser, updatePassword } = require("../controllers/userController");
 
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const newUser = await User.create({ username, password });
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+router.post("/register", registerUser);
+router.post("/login", loginUser);
+router.put("/updatepassword", updatePassword);
 
 module.exports = router;
