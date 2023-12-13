@@ -1,0 +1,10 @@
+# Entorno
+node_modules/
+.env
+
+# Archivos de configuración sensibles
+config/config.json
+
+# Archivos generados en la construcción
+build/
+dist/
