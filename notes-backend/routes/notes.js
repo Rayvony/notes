@@ -1,15 +1,8 @@
 const express = require("express");
-const Note = require("../models/note");
+const noteController = require("../controllers/noteController");
 
 const router = express.Router();
 
-router.get("/active", async (req, res) => {
-  try {
-    const activeNotes = await Note.findAll({ where: { archived: false } });
-    res.json(activeNotes);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.post("/create", noteController.createNote);
 
 module.exports = router;

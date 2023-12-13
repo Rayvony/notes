@@ -2,22 +2,22 @@
   "development": {
     "username": "postgres",
     "password": "admin",
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "notes_db",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "test": {
-    "username": "admin",
+    "username": "postgres",
     "password": "admin",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "notes_db",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "production": {
-    "username": "admin",
+    "username": "postgres",
     "password": "admin",
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "notes_db",
+    "host": "localhost",
+    "dialect": "postgres"
   }
 }
