@@ -18,12 +18,17 @@ if (config.use_env_variable) {
 
 const NoteModel = require("./note")(sequelize, Sequelize.DataTypes);
 const UserModel = require("./user")(sequelize, Sequelize.DataTypes);
+const CategoryModel = require("./category")(sequelize, Sequelize.DataTypes);
 
 NoteModel.belongsTo(UserModel);
 UserModel.hasMany(NoteModel);
 
+NoteModel.belongsToMany(CategoryModel, { through: "NoteCategory" });
+CategoryModel.belongsToMany(NoteModel, { through: "NoteCategory" });
+
 db.Note = NoteModel;
 db.User = UserModel;
+db.Category = CategoryModel;
 
 fs.readdirSync(__dirname)
   .filter((file) => {

@@ -58,7 +58,7 @@ async function updatePassword(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
-//
+
 module.exports = {
   registerUser,
   loginUser,
