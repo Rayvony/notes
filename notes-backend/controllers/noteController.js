@@ -10,14 +10,14 @@ async function getAllNotesByUser(req, res) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ notes });
+    res.status(200).json(notes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 }
 
 async function createNote(req, res) {
-  const { username, title, content } = req.body;
+  const { username, title, content, categories } = req.body;
 
   try {
     const { id } = await User.findOne({ where: { username } });
@@ -31,9 +31,10 @@ async function createNote(req, res) {
       content,
       archived: false,
       userId: id,
+      categories: categories || [],
     });
 
-    res.status(201).json({ message: "Note created succesfully", note: newNote });
+    res.status(201).json({ message: "Note created successfully", note: newNote });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,10 +42,10 @@ async function createNote(req, res) {
 
 async function updateNote(req, res) {
   const { id } = req.params;
-  const { title, content, archived } = req.body;
+  const { title, content, archived, categories } = req.body;
 
   try {
-    const note = await Notes.findByPk(id);
+    const note = await Note.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
@@ -59,10 +60,13 @@ async function updateNote(req, res) {
     if (archived !== undefined) {
       note.archived = archived;
     }
+    if (categories) {
+      note.categories = categories;
+    }
 
     await note.save();
 
-    res.json({ message: "Note saved succesfully", note });
+    res.json({ message: "Note saved successfully", note });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

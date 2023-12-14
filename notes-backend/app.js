@@ -3,7 +3,6 @@ const cors = require("cors");
 const { sequelize } = require("./models/index");
 const notesRouter = require("./routes/notes");
 const usersRouter = require("./routes/users");
-const categoriesRouter = require("./routes/categories");
 
 const app = express();
 
@@ -23,7 +22,6 @@ sequelize
 
 app.use("/notes", notesRouter);
 app.use("/users", usersRouter);
-app.use("/categories", categoriesRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
