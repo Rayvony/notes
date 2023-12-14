@@ -2,25 +2,32 @@ const express = require("express");
 const { sequelize } = require("./models/index");
 const notesRouter = require("./routes/notes");
 const usersRouter = require("./routes/users");
+const categoriesRouter = require("./routes/categories");
 
 const app = express();
 
-// Conexión a la base de datos
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 sequelize
   .sync()
   .then(() => {
-    console.log("Base de datos conectada");
+    console.log("Database connected");
   })
   .catch((err) => {
-    console.error("Error de conexión a la base de datos:", err);
+    console.error("Database connection error:", err);
   });
 
-// Rutas para las notas y usuarios
 app.use("/notes", notesRouter);
 app.use("/users", usersRouter);
+app.use("/categories", categoriesRouter);
 
-// Configuración de otras rutas, middlewares, etc.
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
-app.listen(3000, () => {
-  console.log("Servidor iniciado en el puerto 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });

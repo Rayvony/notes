@@ -3,13 +3,13 @@ const { getAllNotesByUser, createNote, updateNote, deleteNote, toggleArchived } 
 
 const router = express.Router();
 
-router.get("/user/:userId/notes", getAllNotesByUser);
+router.get("/user", getAllNotesByUser);
 
-router.post("/note/create", createNote);
+router.post("/create", createNote);
 
-router.put("/note/update/:id", updateNote);
-router.put("/note/toggle/:id", toggleArchived);
+router.put("/update/:id", updateNote);
+router.put("/toggle/:id", toggleArchived);
 
-router.delete("note/:id", deleteNote);
+router.delete("/:id", deleteNote);
 
 module.exports = router;

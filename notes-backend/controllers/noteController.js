@@ -1,12 +1,11 @@
-const User = require("../models/user");
-const Note = require("../models/note");
+const { User, Notes } = require("../models/");
 
 async function getAllNotesByUser(req, res) {
-  const { userId } = req.params;
+  const { id } = req.body;
 
   try {
-    const user = await User.findByPk(userId, {
-      include: Note,
+    const user = await User.findByPk(id, {
+      include: Notes,
     });
 
     if (!user) {
@@ -29,7 +28,7 @@ async function createNote(req, res) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const newNote = await Note.create({
+    const newNote = await Notes.create({
       title,
       content,
       archived: false,
@@ -47,7 +46,7 @@ async function updateNote(req, res) {
   const { title, content, archived } = req.body;
 
   try {
-    const note = await Note.findByPk(id);
+    const note = await Notes.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
@@ -75,7 +74,7 @@ async function toggleArchived(req, res) {
   const { id } = req.params;
 
   try {
-    const note = await Note.findByPk(id);
+    const note = await Notes.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
@@ -94,7 +93,7 @@ async function deleteNote(req, res) {
   const { id } = req.params;
 
   try {
-    const note = await Note.findByPk(id);
+    const note = await Notes.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
