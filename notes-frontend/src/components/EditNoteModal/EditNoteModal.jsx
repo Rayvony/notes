@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Paper, Typography, TextField, Button, Chip, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import styles from "./CreateNoteModal.module.css";
+import styles from "./EditNoteModal.module.css";
 
-const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
+const EditNoteModal = ({ open, handleClose, noteData, handleUpdateNote }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
@@ -27,12 +27,20 @@ const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
     }
   };
 
+  useEffect(() => {
+    if (noteData) {
+      setTitle(noteData.title);
+      setContent(noteData.content);
+      setCategories(noteData.categories || []);
+    }
+  }, [noteData]);
+
   return (
     <Modal open={open} onClose={handleClose}>
       <div className={styles.modal} onClick={handleOutsideClick}>
         <Paper elevation={3} className={styles.paper}>
           <Typography variant='h6' gutterBottom sx={{ textAlign: "center" }}>
-            Create new note
+            Edit Note
           </Typography>
           <TextField label='Title' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} className={styles.input} />
           <TextField label='Content' variant='outlined' fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} className={styles.input} />
@@ -60,8 +68,8 @@ const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
             </div>
           )}
           <div className={styles.createButtonContainer}>
-            <Button variant='contained' onClick={() => handleCreateNote({ title, content, categories })} className={styles.createButton}>
-              Create Note
+            <Button variant='contained' onClick={() => handleUpdateNote(noteData.id, { title, content, categories })} className={styles.createButton}>
+              Save Note
             </Button>
           </div>
         </Paper>
@@ -70,4 +78,4 @@ const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
   );
 };
 
-export default CreateNoteModal;
+export default EditNoteModal;

@@ -1,0 +1,55 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.paper {
+  width: 700px;
+  height: 500px;
+  padding: 16px;
+}
+
+.input {
+  margin-bottom: 4% !important;
+}
+
+.categorySection {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.categoryInput {
+  margin-right: 16px;
+  flex: 1;
+}
+
+.addButton {
+  height: 55px;
+  margin-left: 16px;
+}
+
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.categoryChip {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.createButton {
+  width: 60%;
+}
+
+.createButtonContainer {
+  display: flex;
+  justify-content: center;
+
+}

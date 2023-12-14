@@ -5,35 +5,45 @@ import { Paper, IconButton, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./Notes.module.css";
 import CreateNoteModal from "../CreateNoteModal/CreateNoteModal";
+import EditNoteModal from "../EditNoteModal/EditNoteModal";
 
 const Notes = () => {
   const { user } = useAuthStore();
-  const { getNotesByUser, notes } = useNoteStore();
+  const { getNotesByUser, notes, createNote, updateNote } = useNoteStore();
   const [showArchived, setShowArchived] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // New state to handle modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState(null);
 
-  useEffect(() => {
-    getNotesByUser();
-  }, [user]);
+  const filteredNotes = showArchived ? notes.filter((note) => note.archived) : notes.filter((note) => !note.archived);
 
-  const renderNotes = () => {
-    const filteredNotes = showArchived ? notes.filter((note) => note.archived) : notes;
-
-    return filteredNotes.map((note) => (
-      <Paper key={note.id} elevation={3} className={styles.stickyNote}>
-        <span className={styles.title}>{note.title}</span>
-        <span className={styles.content}>{note.content}</span>
-      </Paper>
-    ));
+  const openNewNoteModal = () => {
+    setSelectedNote(null);
+    setIsModalOpen(true);
   };
 
-  const openModal = () => {
+  const openEditNoteModal = (note) => {
+    setSelectedNote(note);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setSelectedNote(null);
   };
+
+  const handleCreateNote = (note) => {
+    createNote(note.title, note.content, note.categories);
+    closeModal();
+  };
+
+  const handleUpdateNote = (id, note) => {
+    updateNote(id, note.title, note.content, note.categories);
+    closeModal();
+  };
+
+  useEffect(() => {
+    getNotesByUser();
+  }, [user]);
 
   return (
     <>
@@ -44,16 +54,26 @@ const Notes = () => {
         </Button>
       </div>
       <div className={styles.notesContainer}>
-        <Paper onClick={openModal} elevation={3} className={`${styles.stickyNote} ${styles.addNote}`}>
+        <Paper onClick={openNewNoteModal} elevation={3} className={`${styles.stickyNote} ${styles.addNote}`}>
           <IconButton>
             <AddIcon fontSize='large' />
           </IconButton>
         </Paper>
-        {notes && notes.length > 0 ? renderNotes() : <></>}
+
+        {filteredNotes && filteredNotes.length > 0 ? (
+          filteredNotes.map((note) => (
+            <Paper key={note.id} elevation={3} className={styles.stickyNote} onClick={() => openEditNoteModal(note)}>
+              <span className={styles.title}>{note.title}</span>
+              <span className={styles.content}>{note.content}</span>
+            </Paper>
+          ))
+        ) : (
+          <></>
+        )}
       </div>
-      <CreateNoteModal open={isModalOpen} handleClose={closeModal} /> {/* Render the modal */}
+      {isModalOpen && !selectedNote && <CreateNoteModal open={isModalOpen} handleClose={closeModal} handleCreateNote={handleCreateNote} />}
+      {isModalOpen && selectedNote && <EditNoteModal open={isModalOpen} handleClose={closeModal} noteData={selectedNote} handleUpdateNote={handleUpdateNote} />}
     </>
   );
 };
-
 export default Notes;
