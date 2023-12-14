@@ -17,7 +17,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   });
+
+  Note.associate = (models) => {
+    Note.belongsTo(models.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+    });
+  };
 
   return Note;
 };

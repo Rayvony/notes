@@ -48,7 +48,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-console.log("hola", NoteModel.associations);
-console.log("hola2", UserModel.associations);
-
 module.exports = db;

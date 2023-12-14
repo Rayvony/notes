@@ -1,18 +1,16 @@
-const { User, Notes } = require("../models/");
+const { User, Note } = require("../models/");
 
 async function getAllNotesByUser(req, res) {
   const { id } = req.params;
 
   try {
-    const user = await User.findByPk(id, {
-      include: Notes,
-    });
+    const notes = await Note.findAll({ where: { userId: id } });
 
-    if (!user) {
+    if (!id) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json({ notes: user.Notes });
+    res.status(200).json({ notes });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -22,17 +20,17 @@ async function createNote(req, res) {
   const { username, title, content } = req.body;
 
   try {
-    const user = await User.findOne({ where: { username } });
+    const { id } = await User.findOne({ where: { username } });
 
-    if (!user) {
+    if (!id) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const newNote = await Notes.create({
+    const newNote = await Note.create({
       title,
       content,
       archived: false,
-      UserId: user.id,
+      userId: id,
     });
 
     res.status(201).json({ message: "Note created succesfully", note: newNote });
