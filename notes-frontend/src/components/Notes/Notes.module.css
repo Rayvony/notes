@@ -67,3 +67,8 @@
 .buttons button:hover{
   color: black;
 }
+
+.filterInput{
+  background-color: #fff;
+  border-radius: 4px;
+}

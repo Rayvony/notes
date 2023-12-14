@@ -79,10 +79,12 @@ const Notes = () => {
           {showArchived ? "Hide Archived" : "Show Archived"}
         </Button>
         <TextField
+          size='small'
           placeholder='Filter by category'
           onChange={(e) => {
             setCategoryFilter(e.target.value);
           }}
+          className={styles.filterInput}
         />
       </div>
       <div className={styles.notesContainer}>
