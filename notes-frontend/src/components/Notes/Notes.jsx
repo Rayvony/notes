@@ -4,11 +4,13 @@ import { useAuthStore } from "../../hooks/useAuthStore";
 import { Paper, IconButton, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./Notes.module.css";
+import CreateNoteModal from "../CreateNoteModal/CreateNoteModal";
 
 const Notes = () => {
   const { user } = useAuthStore();
   const { getNotesByUser, notes } = useNoteStore();
   const [showArchived, setShowArchived] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // New state to handle modal visibility
 
   useEffect(() => {
     getNotesByUser();
@@ -25,6 +27,14 @@ const Notes = () => {
     ));
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className={styles.containerTitle}>
@@ -34,13 +44,14 @@ const Notes = () => {
         </Button>
       </div>
       <div className={styles.notesContainer}>
-        <Paper elevation={3} className={`${styles.stickyNote} ${styles.addNote}`}>
+        <Paper onClick={openModal} elevation={3} className={`${styles.stickyNote} ${styles.addNote}`}>
           <IconButton>
             <AddIcon fontSize='large' />
           </IconButton>
         </Paper>
         {notes && notes.length > 0 ? renderNotes() : <></>}
       </div>
+      <CreateNoteModal open={isModalOpen} handleClose={closeModal} /> {/* Render the modal */}
     </>
   );
 };

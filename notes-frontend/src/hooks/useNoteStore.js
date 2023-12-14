@@ -11,6 +11,7 @@ export const useNoteStore = () => {
   const createNote = async (title, content) => {
     try {
       const { data } = await noteAPI.post("note", {
+        username: user.username,
         title,
         content,
       });

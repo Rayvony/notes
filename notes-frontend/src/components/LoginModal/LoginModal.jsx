@@ -23,6 +23,18 @@ const LoginModal = ({ open, handleClose }) => {
     handleClose();
   };
 
+  const handleEnterKey = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      if (tabValue === 0) {
+        handleLogin();
+      } else {
+        handleRegister();
+      }
+    }
+  };
+
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>
@@ -34,8 +46,8 @@ const LoginModal = ({ open, handleClose }) => {
       <DialogContent>
         {tabValue === 0 ? (
           <>
-            <TextField autoFocus margin='dense' label='Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} />
-            <TextField margin='dense' label='Password' type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
+            <TextField autoFocus margin='dense' label='Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} onKeyPress={handleEnterKey} />
+            <TextField margin='dense' label='Password' type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={handleEnterKey} />
           </>
         ) : (
           <>
@@ -46,7 +58,15 @@ const LoginModal = ({ open, handleClose }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        {tabValue === 0 ? <Button onClick={handleLogin}>Login</Button> : <Button onClick={handleRegister}>Register</Button>}
+        {tabValue === 0 ? (
+          <Button onClick={handleLogin} onKeyPress={handleEnterKey}>
+            Login
+          </Button>
+        ) : (
+          <Button onClick={handleRegister} onKeyPress={handleEnterKey}>
+            Register
+          </Button>
+        )}
       </DialogActions>
     </Dialog>
   );
