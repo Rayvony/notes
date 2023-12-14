@@ -3,7 +3,7 @@ const { getAllNotesByUser, createNote, updateNote, deleteNote, toggleArchived } 
 
 const router = express.Router();
 
-router.get("/user", getAllNotesByUser);
+router.get("/user/:id", getAllNotesByUser);
 
 router.post("/create", createNote);
 

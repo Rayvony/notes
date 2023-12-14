@@ -2,8 +2,9 @@ const { Category } = require("../models/");
 
 async function createCategory(req, res) {
   const { name } = req.body;
+  const nameLower = name.toLowerCase();
   try {
-    const newCategory = await Category.create({ name });
+    const newCategory = await Category.create({ name: nameLower });
     res.status(201).json(newCategory);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -23,8 +24,9 @@ async function deleteCategory(req, res) {
 async function updateCategory(req, res) {
   const { categoryId } = req.params;
   const { name } = req.body;
+  const nameLower = name.toLowerCase();
   try {
-    const [updatedRowsCount] = await Category.update({ name }, { where: { id: categoryId } });
+    const [updatedRowsCount] = await Category.update({ name: nameLower }, { where: { id: categoryId } });
     if (updatedRowsCount === 0) {
       return res.status(404).json({ message: "Category not found" });
     }

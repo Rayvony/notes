@@ -3,8 +3,10 @@ const { User } = require("../models");
 
 async function registerUser(req, res) {
   const { username, password } = req.body;
+  const usernameLower = username.toLowerCase();
+  console.log(usernameLower);
   try {
-    const newUser = await User.create({ username, password });
+    const newUser = await User.create({ username: usernameLower, password });
     res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -13,8 +15,9 @@ async function registerUser(req, res) {
 
 async function loginUser(req, res) {
   const { username, password } = req.body;
+  const usernameLower = username.toLowerCase();
   try {
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { username: usernameLower } });
 
     if (!user) {
       return res.status(404).json({ message: "Invalid username or password" });
@@ -34,8 +37,9 @@ async function loginUser(req, res) {
 
 async function updatePassword(req, res) {
   const { username, oldPassword, newPassword } = req.body;
+  const usernameLower = username.toLowerCase();
   try {
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { username: usernameLower } });
 
     if (!user) {
       return res.status(404).json({ message: "Invalid username or password" });

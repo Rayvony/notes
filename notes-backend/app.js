@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { sequelize } = require("./models/index");
 const notesRouter = require("./routes/notes");
 const usersRouter = require("./routes/users");
@@ -8,6 +9,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors()); // Enable CORS for all routes
 
 sequelize
   .sync()

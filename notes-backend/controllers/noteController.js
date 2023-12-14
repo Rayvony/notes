@@ -1,7 +1,7 @@
 const { User, Notes } = require("../models/");
 
 async function getAllNotesByUser(req, res) {
-  const { id } = req.body;
+  const { id } = req.params;
 
   try {
     const user = await User.findByPk(id, {
