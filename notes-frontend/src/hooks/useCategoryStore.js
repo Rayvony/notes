@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { noteAPI } from "../api/noteAPI";
-import { setName } from "../store/categorySlice";
+import { setName } from "../../store/categorySlice";
 
 export const useCategoryStore = () => {
   const dispatch = useDispatch();

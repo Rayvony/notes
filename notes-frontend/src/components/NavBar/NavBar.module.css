@@ -1,0 +1,27 @@
+/* Navbar.module.css */
+
+.title {
+  flex-grow: 1;
+}
+.appBar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  background-color: #880b62e6 !important;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.button {
+  margin-left: 10px;
+}
+
+.button:hover {
+  border-color: black;
+  color: black;
+}
+
+

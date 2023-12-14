@@ -14,4 +14,4 @@ export const categorySlice = createSlice({
   },
 });
 
-export const { setName } = authSlice.actions;
+export const { setName } = categorySlice.actions;

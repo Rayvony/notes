@@ -1,0 +1,21 @@
+.notesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.stickyNote {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.addNote {
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
