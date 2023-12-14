@@ -24,9 +24,6 @@ export const NavBar = () => {
     <>
       <AppBar position='static' className={styles.appBar}>
         <Toolbar>
-          <Typography variant='h6' component='div'>
-            My Notes
-          </Typography>
           <div className={styles.spacer} />
           {status === "authenticated" ? (
             <Button variant='outlined' color='inherit' className={styles.button} onClick={handleLogout}>

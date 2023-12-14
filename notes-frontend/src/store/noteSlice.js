@@ -13,4 +13,4 @@ export const noteSlice = createSlice({
   },
 });
 
-export const { setTitle, setContent } = noteSlice.actions;
+export const { setNotes } = noteSlice.actions;

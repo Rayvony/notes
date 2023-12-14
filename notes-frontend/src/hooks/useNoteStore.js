@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { noteAPI } from "../api/noteAPI";
-import { setNotes } from "../../store/noteSlice";
+import { setNotes } from "../store/noteSlice";
+import { useAuthStore } from "./useAuthStore";
 
 export const useNoteStore = () => {
   const dispatch = useDispatch();
   const { notes } = useSelector((state) => state.note);
-  const user = useSelector((state) => state.auth.user);
+  const { user } = useAuthStore();
 
   const createNote = async (title, content) => {
     try {
@@ -47,8 +48,9 @@ export const useNoteStore = () => {
 
   const getNotesByUser = async () => {
     try {
-      const { data } = await noteAPI.get(`user/${user.id}`);
+      const { data } = await noteAPI.get(`notes/user/1`);
       dispatch(setNotes(data));
+      console.log(notes);
     } catch (error) {
       console.log(error);
     }

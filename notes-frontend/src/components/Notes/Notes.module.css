@@ -5,17 +5,40 @@
   padding: 20px;
 }
 
-.stickyNote {
-  width: 200px;
-  height: 200px;
-  padding: 10px;
-  background-color: #fff;
-}
-
 .addNote {
   border: 2px dashed #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.stickyNote {
+  width: 200px;
+  height: auto;
+  min-height: 200px;
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column; 
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  word-wrap: break-word;
+}
+
+.content {
+  word-wrap: break-word;
+}
+
+.containerTitle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 3%;
 }

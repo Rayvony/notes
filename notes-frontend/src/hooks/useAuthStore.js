@@ -12,8 +12,7 @@ export const useAuthStore = () => {
         username,
         password,
       });
-      dispatch(onLogin(data));
-      console.log(user);
+      await dispatch(onLogin(data));
     } catch (error) {
       console.log(error);
     }
