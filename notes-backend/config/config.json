@@ -5,19 +5,5 @@
     "database": "notes_db",
     "host": "localhost",
     "dialect": "postgres"
-  },
-  "test": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "notes_db",
-    "host": "localhost",
-    "dialect": "postgres"
-  },
-  "production": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "notes_db",
-    "host": "localhost",
-    "dialect": "postgres"
   }
 }

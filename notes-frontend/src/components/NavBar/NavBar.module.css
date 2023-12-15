@@ -9,14 +9,11 @@
   left: 0 !important;
   width: 100vw !important;
   background-color: #880b62e6 !important;
+  z-index: 1000 !important;
 }
 
 .spacer {
   flex-grow: 1;
-}
-
-.button {
-  margin-left: 10px;
 }
 
 .button:hover {
