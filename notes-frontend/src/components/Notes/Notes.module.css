@@ -11,6 +11,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: box-shadow   0.1s linear !important;
+}
+
+.addNote:hover {
+  box-shadow: 5px 5px 10px rgb(0, 0, 0);
 }
 
 .stickyNote {
@@ -22,6 +27,11 @@
   display: flex;
   flex-direction: column; 
   cursor: pointer;
+  transition: box-shadow   0.1s linear !important;
+}
+
+.stickyNote:hover {
+  box-shadow: 5px 5px 10px rgb(0, 0, 0);
 }
 
 .title {

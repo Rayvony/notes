@@ -8,6 +8,7 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
 import CreateNoteModal from "../CreateNoteModal/CreateNoteModal";
 import EditNoteModal from "../EditNoteModal/EditNoteModal";
+import LoginModal from "../LoginModal/LoginModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import styles from "./Notes.module.css";
 
@@ -24,8 +25,12 @@ const Notes = () => {
   const filteredNotes = showArchived ? notes.filter((note) => note.archived) : notes.filter((note) => !note.archived);
 
   const openNewNoteModal = () => {
-    setSelectedNote(null);
-    setIsModalOpen(true);
+    if (!user.id) {
+      setIsModalOpen(true);
+    } else {
+      setSelectedNote(null);
+      setIsModalOpen(true);
+    }
   };
 
   const openEditNoteModal = (note) => {
@@ -38,9 +43,9 @@ const Notes = () => {
     setSelectedNote(null);
   };
 
-  const handleCreateNote = (note) => {
-    createNote(note.title, note.content, note.categories);
-    getNotesByUser();
+  const handleCreateNote = async (note) => {
+    await createNote(note.title, note.content, note.categories);
+    await getNotesByUser(user.id);
     closeModal();
   };
 
@@ -49,27 +54,29 @@ const Notes = () => {
     setDeleteConfirmationOpen(true);
   };
 
-  const handleConfirmDelete = () => {
-    deleteNote(deletingNoteId);
-    getNotesByUser();
+  const handleConfirmDelete = async () => {
+    await deleteNote(deletingNoteId);
+    await getNotesByUser(user.id);
     setDeleteConfirmationOpen(false);
     setDeletingNoteId(null);
   };
 
-  const handleUpdateNote = (id, note) => {
-    updateNote(id, note.title, note.content, note.categories);
-    getNotesByUser();
+  const handleUpdateNote = async (id, note) => {
+    await updateNote(id, note.title, note.content, note.categories);
+    await getNotesByUser(user.id);
     closeModal();
   };
 
-  const handleArchiveToggle = (id) => {
-    toggleArchive(id);
-    getNotesByUser();
+  const handleArchiveToggle = async (id) => {
+    await toggleArchive(id);
+    await getNotesByUser(user.id);
   };
 
   useEffect(() => {
-    getNotesByUser();
-  }, []);
+    if (user.id) {
+      getNotesByUser(user.id);
+    }
+  }, [user]);
 
   return (
     <>
@@ -126,7 +133,8 @@ const Notes = () => {
           <></>
         )}
       </div>
-      {isModalOpen && !selectedNote && <CreateNoteModal open={isModalOpen} handleClose={closeModal} handleCreateNote={handleCreateNote} />}
+      {isModalOpen && !selectedNote && user.id && <CreateNoteModal open={isModalOpen} handleClose={closeModal} handleCreateNote={handleCreateNote} />}
+      {isModalOpen && !selectedNote && !user.id && <LoginModal open={isModalOpen} handleClose={closeModal} />}
       {isModalOpen && selectedNote && <EditNoteModal open={isModalOpen} handleClose={closeModal} noteData={selectedNote} handleUpdateNote={handleUpdateNote} />}
       <DeleteConfirmationModal open={deleteConfirmationOpen} handleClose={() => setDeleteConfirmationOpen(false)} handleConfirmDelete={handleConfirmDelete} />
     </>

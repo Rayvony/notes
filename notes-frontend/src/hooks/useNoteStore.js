@@ -10,7 +10,7 @@ export const useNoteStore = () => {
 
   const createNote = async (title, content, categories) => {
     try {
-      const { data } = await noteAPI.post("note", {
+      const { data } = await noteAPI.post("notes/create", {
         username: user.username,
         title,
         content,
@@ -27,7 +27,7 @@ export const useNoteStore = () => {
 
   const updateNote = async (id, title, content, categories) => {
     try {
-      await noteAPI.put(`notes/${id}`, {
+      await noteAPI.put(`notes/update/${id}`, {
         title,
         content,
         categories,
@@ -41,12 +41,16 @@ export const useNoteStore = () => {
     } catch (error) {}
   };
 
-  const getNotesByUser = async () => {
+  const getNotesByUser = async (id) => {
     try {
-      const { data } = await noteAPI.get(`notes/user/1`);
+      const { data } = await noteAPI.get(`notes/user/${id}`);
       dispatch(setNotes(data));
     } catch (error) {}
   };
 
-  return { notes, createNote, deleteNote, updateNote, toggleArchive, getNotesByUser };
+  const clearNotes = () => {
+    dispatch(setNotes([]));
+  };
+
+  return { notes, createNote, deleteNote, updateNote, toggleArchive, getNotesByUser, clearNotes };
 };
