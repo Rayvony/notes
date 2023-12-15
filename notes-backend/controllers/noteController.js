@@ -42,7 +42,7 @@ async function createNote(req, res) {
 
 async function updateNote(req, res) {
   const { id } = req.params;
-  const { title, content, archived, categories } = req.body;
+  const { title, content, categories } = req.body;
 
   try {
     const note = await Note.findByPk(id);
@@ -57,9 +57,7 @@ async function updateNote(req, res) {
     if (content) {
       note.content = content;
     }
-    if (archived !== undefined) {
-      note.archived = archived;
-    }
+
     if (categories) {
       note.categories = categories;
     }
@@ -76,7 +74,7 @@ async function toggleArchived(req, res) {
   const { id } = req.params;
 
   try {
-    const note = await Notes.findByPk(id);
+    const note = await Note.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
@@ -95,7 +93,7 @@ async function deleteNote(req, res) {
   const { id } = req.params;
 
   try {
-    const note = await Notes.findByPk(id);
+    const note = await Note.findByPk(id);
 
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
