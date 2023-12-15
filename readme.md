@@ -1,5 +1,11 @@
 <h2>Back-end files Setup</h2>
 
+First of all use command 
+
+```
+npm i
+```
+
 You will need to create a .env inside the notes-backend folder and it'll need this line of code:
 ```
 JWT_SECRET_KEY=bec82b67067781d02a743a2f242372cb7c9f5c6d54cb3aa5afd5be6ed1d1f951
@@ -7,6 +13,13 @@ JWT_SECRET_KEY=bec82b67067781d02a743a2f242372cb7c9f5c6d54cb3aa5afd5be6ed1d1f951
 Then in the config.json inside the config folder you'll have to setup your postgres username, password and database and using SQL shell you'll have to create the database using the name you used in the config.json
 
 <h2>Front-end files setup</h2>
+
+First of all use command 
+
+```
+npm i
+```
+
 You will need to create a .env inside the notes-frontend folder and it'll need this line of code:
 
 ```
