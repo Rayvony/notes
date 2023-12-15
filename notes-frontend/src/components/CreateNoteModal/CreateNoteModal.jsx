@@ -34,11 +34,11 @@ const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
           <Typography variant='h6' gutterBottom sx={{ textAlign: "center" }}>
             Create new note
           </Typography>
-          <TextField label='Title' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} className={styles.input} />
-          <TextField label='Content' variant='outlined' fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} className={styles.input} />
+          <TextField color='purple' label='Title' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} className={styles.input} />
+          <TextField color='purple' label='Content' variant='outlined' fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} className={styles.input} />
           <div className={styles.categorySection}>
-            <TextField label='Category' variant='outlined' value={category} onChange={(e) => setCategory(e.target.value)} className={styles.categoryInput} />
-            <Button variant='outlined' onClick={handleAddCategory} className={styles.addButton}>
+            <TextField color='purple' label='Category' variant='outlined' value={category} onChange={(e) => setCategory(e.target.value)} className={styles.categoryInput} />
+            <Button color='purple' variant='outlined' onClick={handleAddCategory} className={styles.addButton}>
               Add Category
             </Button>
           </div>
@@ -60,7 +60,7 @@ const CreateNoteModal = ({ open, handleClose, handleCreateNote }) => {
             </div>
           )}
           <div className={styles.createButtonContainer}>
-            <Button variant='contained' onClick={() => handleCreateNote({ title, content, categories })} className={styles.createButton}>
+            <Button color='purple' sx={{ color: "#fff" }} variant='contained' onClick={() => handleCreateNote({ title, content, categories })} className={styles.createButton}>
               Create Note
             </Button>
           </div>

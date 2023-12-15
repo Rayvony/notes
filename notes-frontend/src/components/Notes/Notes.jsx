@@ -86,6 +86,7 @@ const Notes = () => {
           {showArchived ? "Hide Archived" : "Show Archived"}
         </Button>
         <TextField
+          color='purple'
           size='small'
           placeholder='Filter by category'
           onChange={(e) => {
@@ -95,7 +96,7 @@ const Notes = () => {
         />
       </div>
       <div className={styles.notesContainer}>
-        <Paper onClick={openNewNoteModal} elevation={3} className={`${styles.stickyNote} ${styles.addNote}`}>
+        <Paper onClick={openNewNoteModal} elevation={3} className={`${styles.stickyNote} ${styles.addNote}`} sx={{ backgroundColor: "#ffc" }}>
           <IconButton>
             <AddIcon fontSize='large' />
           </IconButton>
@@ -105,7 +106,7 @@ const Notes = () => {
           filteredNotes
             .filter((note) => !categoryFilter || note.categories.includes(categoryFilter))
             .map((note) => (
-              <Paper key={note.id} elevation={3} className={styles.stickyNote} onClick={() => openEditNoteModal(note)}>
+              <Paper key={note.id} elevation={3} className={styles.stickyNote} onClick={() => openEditNoteModal(note)} sx={{ backgroundColor: "#ffc" }}>
                 <div className={styles.buttons}>
                   <IconButton
                     onClick={(e) => {

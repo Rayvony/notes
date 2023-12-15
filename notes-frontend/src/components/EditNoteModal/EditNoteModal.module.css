@@ -7,7 +7,7 @@
 
 .paper {
   width: 700px;
-  height: 500px;
+  height: auto;
   padding: 16px;
 }
 
@@ -51,5 +51,4 @@
 .createButtonContainer {
   display: flex;
   justify-content: center;
-
 }

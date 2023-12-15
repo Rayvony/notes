@@ -42,11 +42,11 @@ const EditNoteModal = ({ open, handleClose, noteData, handleUpdateNote }) => {
           <Typography variant='h6' gutterBottom sx={{ textAlign: "center" }}>
             Edit Note
           </Typography>
-          <TextField label='Title' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} className={styles.input} />
-          <TextField label='Content' variant='outlined' fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} className={styles.input} />
+          <TextField color='purple' label='Title' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} className={styles.input} />
+          <TextField color='purple' label='Content' variant='outlined' fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} className={styles.input} />
           <div className={styles.categorySection}>
-            <TextField label='Category' variant='outlined' value={category} onChange={(e) => setCategory(e.target.value)} className={styles.categoryInput} />
-            <Button variant='outlined' onClick={handleAddCategory} className={styles.addButton}>
+            <TextField color='purple' label='Category' variant='outlined' value={category} onChange={(e) => setCategory(e.target.value)} className={styles.categoryInput} />
+            <Button color='purple' variant='outlined' onClick={handleAddCategory} className={styles.addButton}>
               Add Category
             </Button>
           </div>
@@ -68,7 +68,7 @@ const EditNoteModal = ({ open, handleClose, noteData, handleUpdateNote }) => {
             </div>
           )}
           <div className={styles.createButtonContainer}>
-            <Button variant='contained' onClick={() => handleUpdateNote(noteData.id, { title, content, categories })} className={styles.createButton}>
+            <Button color='purple' sx={{ color: "#fff" }} variant='contained' onClick={() => handleUpdateNote(noteData.id, { title, content, categories })} className={styles.createButton}>
               Save Note
             </Button>
           </div>

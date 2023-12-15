@@ -1,8 +1,8 @@
 .notesContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  justify-content: flex-start;
+  padding: 10px 0 0 20px;
 }
 
 .addNote {
@@ -19,15 +19,31 @@
 }
 
 .stickyNote {
-  width: 200px;
+  width: 350px;
   height: auto;
   min-height: 200px;
+  margin-right: 100px;
+  margin-bottom: 20px;
   padding: 10px;
-  background-color: #fff;
   display: flex;
   flex-direction: column; 
   cursor: pointer;
-  transition: box-shadow   0.1s linear !important;
+  transition: box-shadow 0.1s, transform 0.2s !important;
+}
+
+.notesContainer > :nth-child(even){
+  background-color: #cfc ;
+}
+
+.notesContainer > :nth-child(3n) {
+  background-color: #ccf ;
+}
+
+.notesContainer > :nth-child(odd):hover {
+  transform: rotate(5deg) !important;
+}
+.notesContainer > :nth-child(even):hover {
+  transform: rotate(-3deg) !important;
 }
 
 .stickyNote:hover {
@@ -41,27 +57,32 @@
   text-align: center;
   text-transform: capitalize;
   word-wrap: break-word;
+  transform: translateY(-30px);
 }
 
 .content {
   word-wrap: break-word;
+  font-family: 'Reenie Beanie';
+  font-size: 2rem;
+  line-height: 25px;
+  transform: translateY(-30px);
 }
 
 .containerTitle {
   display: flex;
-  gap: 10px;
   align-items: center;
-  margin-top: 3%;
+  margin-top: 3.5%;
+  gap: 10px;
 }
 
 .buttons {
   margin: 0;
   padding: 0;
   position: relative;
-  left: 73%;
+  left: 85%;
   bottom: 16%;
-  background-color: gray;
-  width: 40%;
+  background-color: #880b62;
+  width: 25%;
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
@@ -75,7 +96,7 @@
 }
 
 .buttons button:hover{
-  color: black;
+  color: #fff;
 }
 
 .filterInput{

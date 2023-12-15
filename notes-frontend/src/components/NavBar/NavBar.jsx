@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import { useNoteStore } from "../../hooks/useNoteStore";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Button } from "@mui/material";
 import LoginModal from "../LoginModal/LoginModal";
 import styles from "./NavBar.module.css";
 

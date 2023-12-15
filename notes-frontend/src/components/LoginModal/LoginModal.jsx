@@ -54,32 +54,34 @@ const LoginModal = ({ open, handleClose }) => {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>
-        <Tabs value={tabValue} onChange={(e, newValue) => setTabValue(newValue)}>
-          <Tab label='Login' />
-          <Tab label='Register' />
+        <Tabs color='purple' value={tabValue} onChange={(e, newValue) => setTabValue(newValue)}>
+          <Tab color='purple' label='Login' />
+          <Tab color='purple' label='Register' />
         </Tabs>
       </DialogTitle>
       <DialogContent>
         {tabValue === 0 ? (
           <>
-            <TextField autoFocus margin='dense' label='Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} onKeyPress={handleEnterKey} />
-            <TextField error={!!passwordError} helperText={passwordError} margin='dense' label='Password' type='password' fullWidth value={password} onChange={handlePasswordChange} onKeyPress={handleEnterKey} />
+            <TextField color='purple' autoFocus margin='dense' label='Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} onKeyPress={handleEnterKey} />
+            <TextField color='purple' error={!!passwordError} helperText={passwordError} margin='dense' label='Password' type='password' fullWidth value={password} onChange={handlePasswordChange} onKeyPress={handleEnterKey} />
           </>
         ) : (
           <>
-            <TextField autoFocus margin='dense' label='New Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} />
-            <TextField error={!!passwordError} helperText={passwordError} margin='dense' label='New Password' type='password' fullWidth value={password} onChange={handlePasswordChange} />
+            <TextField color='purple' autoFocus margin='dense' label='New Username' type='text' fullWidth value={username} onChange={(e) => setUsername(e.target.value)} />
+            <TextField color='purple' error={!!passwordError} helperText={passwordError} margin='dense' label='New Password' type='password' fullWidth value={password} onChange={handlePasswordChange} />
           </>
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button color='purple' onClick={handleClose}>
+          Cancel
+        </Button>
         {tabValue === 0 ? (
-          <Button onClick={handleLogin} disabled={!!passwordError} onKeyPress={handleEnterKey}>
+          <Button color='purple' onClick={handleLogin} disabled={!!passwordError} onKeyPress={handleEnterKey}>
             Login
           </Button>
         ) : (
-          <Button onClick={handleRegister} disabled={!!passwordError} onKeyPress={handleEnterKey}>
+          <Button color='purple' onClick={handleRegister} disabled={!!passwordError} onKeyPress={handleEnterKey}>
             Register
           </Button>
         )}
