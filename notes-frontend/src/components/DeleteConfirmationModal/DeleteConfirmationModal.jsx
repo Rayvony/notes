@@ -6,10 +6,11 @@ const DeleteConfirmationModal = ({ open, handleClose, handleConfirmDelete }) => 
     <Modal open={open} onClose={handleClose}>
       <div className={styles.modal}>
         <Paper elevation={3} className={styles.paper}>
-          <h2>Confirm Deletion</h2>
-          <p>Are you sure you want to delete this note?</p>
+          <h2>Are you sure you want to delete this note?</h2>
           <div className={styles.buttons}>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button color='purple' onClick={handleClose}>
+              Cancel
+            </Button>
             <Button onClick={handleConfirmDelete} variant='contained' color='error'>
               Delete
             </Button>

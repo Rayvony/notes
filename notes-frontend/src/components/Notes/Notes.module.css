@@ -6,7 +6,7 @@
 }
 
 .addNote {
-  border: 2px dashed #ccc;
+  border: 2px dashed #880b62;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@
   width: 350px;
   height: auto;
   min-height: 200px;
-  margin-right: 100px;
+  margin-right: 70px;
   margin-bottom: 20px;
   padding: 10px;
   display: flex;
