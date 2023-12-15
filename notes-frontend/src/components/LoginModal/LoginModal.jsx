@@ -8,6 +8,8 @@ const LoginModal = ({ open, handleClose }) => {
   const [tabValue, setTabValue] = useState(0);
   const [passwordError, setPasswordError] = useState("");
 
+  open = open || false; // default to false if open is undefined mui error
+
   const { login, register } = useAuthStore();
 
   const handleLogin = () => {
